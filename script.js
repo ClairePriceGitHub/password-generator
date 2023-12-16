@@ -150,34 +150,42 @@ generateBtn.addEventListener('click', writePassword);
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  var passwordOptions = [];
+  // var passwordOptions = [];
 
   
-  var numCharInput = 0;
-  var numChar = prompt("How many characters does your password have?");
-  if (numChar < 8 || numChar > 128) {
-    alert("Please enter a number between 8 and 128");
-    restart();
-  } else if (numChar === !typeof number) {
-    alert("Please enter a numeric value");
-  } else {
-    numCharInput += numChar;
-  }
+  // var numCharInput = 0;
+  // var numChar = ;
+  
+  // if (numChar < 8 || numChar > 128) {
+  //   alert("Please enter a number between 8 and 128");
+  //   getPasswordOptions();
+  // } else if (numChar == typeof num) {
+  //   alert("Please enter a numeric value");
+  //   getPasswordOptions();
+  // } else {
+  //   numCharInput += numChar;
+  // }
+  
+  
 
-  var specChar = false;
-  var numericChar = false;
-  var upperChar = false;
-  if (confirm("does your password have special characters?") == true) {
-    specChar = true;
-  }
-  if (confirm("does your password have numeric characters?") == true) {
-    numericChar = true;
-  }
-  if (confirm("does your password have uppercase characters?") == true) {
-    upperChar = true;
-  }
-  passwordOptions.push(numCharInput, specChar, numericChar, upperChar);
-  console.log(passwordOptions);
+  var inputQuestions = [
+    prompt("How many characters does your password have?"),
+    confirm("does your password have special characters?"),
+    confirm("does your password have numeric characters?"),
+    confirm("does your password have uppercase characters?")];
+  var inputAnswers = [0, false, false, false];
+  
+  var questionsAndAnswers = function(inputQuestions, inputAnswers) {
+    for (var i=1; i < inputQuestions.length; i++) {
+       
+        if (inputQuestions[i] == true) {
+          inputAnswers[j] = true;
+          }
+        
+      }
+    }
+ // questionsAndAnswers.push(inputAnswers);
+  console.log(inputAnswers);
 }
 
 getPasswordOptions();
