@@ -175,44 +175,44 @@ function getPasswordOptions() {
     confirm("does your password have uppercase characters?")];
   var inputAnswers = [0, false, false, false];
   
-  var questionsAndAnswers = function(inputQuestions, inputAnswers) {
+  
     for (var i=1; i < inputQuestions.length; i++) {
-       
-        if (inputQuestions[i] == true) {
-          inputAnswers[j] = true;
-          }
-        
+      for (var j=1; j < inputAnswers.length; j++) {
+      if (inputQuestions[i] == true) {
+        inputAnswers.splice(i, 1, true);
+        }
       }
     }
+    
  // questionsAndAnswers.push(inputAnswers);
   console.log(inputAnswers);
-}
+  }
 
 getPasswordOptions();
 
-// Function for getting a random element from an array
-function getRandom(arr) {
-  var randomIndex = Math.floor(Math.random() * arr.length);
-  var randomElement = arr[randomIndex];
-  return randomElement;
-}
+// // Function for getting a random element from an array
+// function getRandom(arr) {
+//   var randomIndex = Math.floor(Math.random() * arr.length);
+//   var randomElement = arr[randomIndex];
+//   return randomElement;
+// }
 
 
-// Function to generate password with user input
-function generatePassword() {
- getRandom(arr)
-}
+// // Function to generate password with user input
+// function generatePassword() {
+//  getRandom(arr)
+// }
 
-// Get references to the #generate element
-var generateBtn = document.querySelector('#generate');
+// // Get references to the #generate element
+// var generateBtn = document.querySelector('#generate');
 
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector('#password');
- // document.getElementById("password").value = password; // associate the password with the input box?
-  passwordText.value = password;
-}
+// // Write password to the #password input
+// function writePassword() {
+//   var password = generatePassword();
+//   var passwordText = document.querySelector('#password');
+//  // document.getElementById("password").value = password; // associate the password with the input box?
+//   passwordText.value = password;
+// }
 
-// Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
+// // Add event listener to generate button
+// generateBtn.addEventListener('click', writePassword);
