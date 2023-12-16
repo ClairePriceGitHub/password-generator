@@ -126,18 +126,18 @@ generateBtn.addEventListener('click', writePassword);
 
 
 
-var passwordLength = 0;
+// var passwordLength = 0;
 
-// Function to prompt user for password options
-function getPasswordOptions() {
-  var numOfChar = prompt("How many characters does your password have?");
-  if (numOfChar < 8 || numOfChar > 128) {
-    alert("Please enter a number between 8 and 128");
-  } else if (numOfChar === !typeof number) {
-    alert('Please enter a numeric value');
-  } else {
-    passwordLength += numOfChar;
-  }
+// // Function to prompt user for password options
+// function getPasswordOptions() {
+//   var numOfChar = prompt("How many characters does your password have?");
+//   if (numOfChar < 8 || numOfChar > 128) {
+//     alert("Please enter a number between 8 and 128");
+//   } else if (numOfChar === !typeof number) {
+//     alert('Please enter a numeric value');
+//   } else {
+//     passwordLength += numOfChar;
+//   }
 
 //   var specChar = alert("does your password have special characters?");
 //   if (specChar) {
@@ -150,35 +150,49 @@ function getPasswordOptions() {
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  var passwordOptions = {};
-  var numCharInput = prompt("How many characters does your password have?");
-  var specCharInput = alert("does your password have special characters?");
-  var numericCharInput = alert("does your password have numeric characters?");
-  var upperCharInput = alert("does your password have uppercase characters?");
-  passwordOptions.numChar = numCharInput;
-  passwordOptions.specChar = specCharInput;
-  passwordOptions.numericChar = numericCharInput;
-  passwordOptions.upperChar = upperCharInput;
+  var passwordOptions = [];
+
+  
+  var numCharInput = 0;
+  var numChar = prompt("How many characters does your password have?");
+  if (numChar < 8 || numChar > 128) {
+    alert("Please enter a number between 8 and 128");
+    restart();
+  } else if (numChar === !typeof number) {
+    alert("Please enter a numeric value");
+  } else {
+    numCharInput += numChar;
+  }
+
+  var specChar = false;
+  var numericChar = false;
+  var upperChar = false;
+  if (confirm("does your password have special characters?") == true) {
+    specChar = true;
+  }
+  if (confirm("does your password have numeric characters?") == true) {
+    numericChar = true;
+  }
+  if (confirm("does your password have uppercase characters?") == true) {
+    upperChar = true;
+  }
+  passwordOptions.push(numCharInput, specChar, numericChar, upperChar);
+  console.log(passwordOptions);
 }
 
 getPasswordOptions();
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-for (var i=0; i < arr.length; i++) {
-  randomIndex = i;
-  var randomNumCalc = Math.floor(Math.random() * arr.length);
-  var randomIndex = 
-
-}
-  
-  
+  var randomIndex = Math.floor(Math.random() * arr.length);
+  var randomElement = arr[randomIndex];
+  return randomElement;
 }
 
 
 // Function to generate password with user input
 function generatePassword() {
- 
+ getRandom(arr)
 }
 
 // Get references to the #generate element
