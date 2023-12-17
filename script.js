@@ -127,8 +127,8 @@ generateBtn.addEventListener('click', writePassword);
 
 
 
-
-// 1---------Function to prompt user for password options--------- 
+// --------------------------------------------------------------------
+// Function to prompt user for password options
 function getPasswordOptions() {
   var promptQuestions = [
     prompt("How many characters does your password have?")];
@@ -152,7 +152,6 @@ function getPasswordOptions() {
     confirm("does your password have numeric characters?"),
     confirm("does your password have uppercase characters?")];
   var confirmAnswers = [false, false, false];
-
   // For confirm questions: to change false to true following input
   for (var i=0; i < confirmQuestions.length; i++) {
     for (var j=0; j < confirmAnswers.length; j++) {
@@ -161,35 +160,50 @@ function getPasswordOptions() {
       }
     }
   }
-  
   // One array with all answers
   var inputAnswers = promptAnswers.concat(confirmAnswers);
-  console.log(inputAnswers);
+  return(inputAnswers);
 }
 
-// 2---------Function for getting a random element from an array---------
+// --------------------------------------------------------------------
+// Function for getting a random element from an array
 function getRandom(arr) {
   var randomIndex = Math.floor(Math.random() * arr.length);
   var randomElement = arr[randomIndex];
   return randomElement;
 }
 
+// --------------------------------------------------------------------
+// Function to generate password with user input
+function generatePassword() {
+  var input = getPasswordOptions();
+  var password = [];
+  if (input[1] === false && input[2] === false && input[3] === false) {
 
-// // Function to generate password with user input
-// function generatePassword() {
-//  getRandom(arr)
-// }
+  }
+ }
+ function with special characters etc arguements
 
-// // Get references to the #generate element
-// var generateBtn = document.querySelector('#generate');
+ for each array take one random number - push to array
+ for each array functions concat (rasndom generated) - push to array to string
+ 
 
-// // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector('#password');
-//  // document.getElementById("password").value = password; // associate the password with the input box?
-//   passwordText.value = password;
-// }
 
-// // Add event listener to generate button
-// generateBtn.addEventListener('click', writePassword);
+
+
+
+
+// --------------------------------------------------------------------
+// Get references to the #generate element
+var generateBtn = document.querySelector('#generate');
+
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector('#password');
+ // document.getElementById("password").value = password; // associate the password with the input box?
+  passwordText.value = password;
+}
+
+// Add event listener to generate button
+generateBtn.addEventListener('click', writePassword);
