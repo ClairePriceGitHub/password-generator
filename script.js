@@ -177,51 +177,44 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
   var output = getPasswordOptions();
-  // Create array with prompt outputs only
+  // Create array with confirm outputs only
   var promptOutput = output.slice(1);
-  // Save confirmOutputNumber to variable and convert from string to number
-  var confirmOutput = output[0];
-  var confirmOutputNumber = confirmOutput * 1;
-  console.log(confirmOutputNumber);
-  console.log(typeof confirmOutputNumber);
-  
-  
-
+  // Convert password length prompt from string to number
+  var confirmOutput = (output[0]) * 1;
   var arraySelection = [];
-  var arrayPassword = [];
-  
+  var password = [];
+  // Use input to combine which arrays are to be randomly selected from
   if (promptOutput[0] === true) {
     arraySelection.push(specialCharacters);
-    arrayPassword.push(getRandom(specialCharacters));
+    password.push(getRandom(specialCharacters));
   }  
   if (promptOutput[1] === true) {
     arraySelection.push(numericCharacters);
-    arrayPassword.push(getRandom(numericCharacters));
+    password.push(getRandom(numericCharacters));
   }
   if (promptOutput[2] === true) {
     arraySelection.push(upperCasedCharacters);
-    arrayPassword.push(getRandom(upperCasedCharacters));
+    password.push(getRandom(upperCasedCharacters));
   }
   arraySelection.push(lowerCasedCharacters);
-  arrayPassword.push(getRandom(lowerCasedCharacters));
+  password.push(getRandom(lowerCasedCharacters));
+  // Combine selected arrays into one array rather than nested
+  var flatArraySelection = arraySelection.flat();
 
-  // var flatArraySelection = arraySelection.flat();
-  // var randomExecutes = function(confirmOutput) {
-  //   arrayPassword.push(getRandom(flatArraySelection));
-  // }
-  // randomExecutes();
+  for (var i=0; i < confirmOutput-4; i++) {
+    password.push(getRandom(flatArraySelection));
+  }
+
+  return password.toString().replace(/,/g,"");
 
   
 
   // console.log(flatArraySelection);
   // console.log(arrayPassword);
 
- }
+}
 
-//  function with special characters etc arguements
 
-//  for each array take one random number - push to array
-//  for each array functions concat (rasndom generated) - push to array to string
  
 
 
@@ -237,7 +230,6 @@ var generateBtn = document.querySelector('#generate');
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
-  // document.getElementById("password").value = password; // associate the password with the input box?
   passwordText.value = password;
 }
 
