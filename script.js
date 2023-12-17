@@ -126,76 +126,53 @@ generateBtn.addEventListener('click', writePassword);
 
 
 
-// var passwordLength = 0;
 
-// // Function to prompt user for password options
-// function getPasswordOptions() {
-//   var numOfChar = prompt("How many characters does your password have?");
-//   if (numOfChar < 8 || numOfChar > 128) {
-//     alert("Please enter a number between 8 and 128");
-//   } else if (numOfChar === !typeof number) {
-//     alert('Please enter a numeric value');
-//   } else {
-//     passwordLength += numOfChar;
-//   }
 
-//   var specChar = alert("does your password have special characters?");
-//   if (specChar) {
-//     password = 
-//   }
-
-//   var numericChar = alert("does your password have numeric characters?");
-//   var upperChar = alert("does your password have uppercase characters?");
-// }
-
-// Function to prompt user for password options
+// 1---------Function to prompt user for password options--------- 
 function getPasswordOptions() {
-  // var passwordOptions = [];
+  var promptQuestions = [
+    prompt("How many characters does your password have?")];
+  var promptAnswers = [0];
+  
+  // For prompt to check input values and replace in promptAnswers array
+  var numCharInput = 0;
+  for (var i=0; i < promptQuestions.length; i++) {
+    // if (promptQuestions[i] < 8 || promptQuestions[i] > 128) {
+    //   alert("Please enter a number between 8 and 128");
+    //   getPasswordOptions();
+    //   break;
+    // } else {
+      numCharInput += promptQuestions[i];
+      promptAnswers.splice(i, 1, numCharInput);
+    //}
+  }
 
-  
-  // var numCharInput = 0;
-  // var numChar = ;
-  
-  // if (numChar < 8 || numChar > 128) {
-  //   alert("Please enter a number between 8 and 128");
-  //   getPasswordOptions();
-  // } else if (numChar == typeof num) {
-  //   alert("Please enter a numeric value");
-  //   getPasswordOptions();
-  // } else {
-  //   numCharInput += numChar;
-  // }
-  
-  
-
-  var inputQuestions = [
-    prompt("How many characters does your password have?"),
+  var confirmQuestions = [
     confirm("does your password have special characters?"),
     confirm("does your password have numeric characters?"),
     confirm("does your password have uppercase characters?")];
-  var inputAnswers = [0, false, false, false];
-  
-  
-    for (var i=1; i < inputQuestions.length; i++) {
-      for (var j=1; j < inputAnswers.length; j++) {
-      if (inputQuestions[i] == true) {
-        inputAnswers.splice(i, 1, true);
-        }
+  var confirmAnswers = [false, false, false];
+
+  // For confirm questions: to change false to true following input
+  for (var i=0; i < confirmQuestions.length; i++) {
+    for (var j=0; j < confirmAnswers.length; j++) {
+    if (confirmQuestions[i] == true) {
+      confirmAnswers.splice(i, 1, true);
       }
     }
-    
- // questionsAndAnswers.push(inputAnswers);
-  console.log(inputAnswers);
   }
+  
+  // One array with all answers
+  var inputAnswers = promptAnswers.concat(confirmAnswers);
+  console.log(inputAnswers);
+}
 
-getPasswordOptions();
-
-// // Function for getting a random element from an array
-// function getRandom(arr) {
-//   var randomIndex = Math.floor(Math.random() * arr.length);
-//   var randomElement = arr[randomIndex];
-//   return randomElement;
-// }
+// 2---------Function for getting a random element from an array---------
+function getRandom(arr) {
+  var randomIndex = Math.floor(Math.random() * arr.length);
+  var randomElement = arr[randomIndex];
+  return randomElement;
+}
 
 
 // // Function to generate password with user input
