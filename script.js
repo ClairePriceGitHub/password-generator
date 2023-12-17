@@ -176,16 +176,34 @@ function getRandom(arr) {
 // --------------------------------------------------------------------
 // Function to generate password with user input
 function generatePassword() {
-  var input = getPasswordOptions();
+  var output = getPasswordOptions();
+  var promptOutput = output.slice(1);
+  var confirmOutput = output.slice(0, 1);
+  var arraySelection = [];
   var password = [];
-  if (input[1] === false && input[2] === false && input[3] === false) {
-
+  arraySelection.push(lowerCasedCharacters);
+  password.push(getRandom(lowerCasedCharacters));
+  if (promptOutput[0] === true) {
+    arraySelection.push(specialCharacters);
+    password.push(getRandom(specialCharacters));
+  }  
+  if (promptOutput[1] === true) {
+    arraySelection.push(numericCharacters);
+    password.push(getRandom(numericCharacters));
   }
- }
- function with special characters etc arguements
+  if (promptOutput[2] === true) {
+    arraySelection.push(upperCasedCharacters);
+    password.push(getRandom(upperCasedCharacters));
+  }
+  console.log(arraySelection);
+  console.log(password);
 
- for each array take one random number - push to array
- for each array functions concat (rasndom generated) - push to array to string
+ }
+
+//  function with special characters etc arguements
+
+//  for each array take one random number - push to array
+//  for each array functions concat (rasndom generated) - push to array to string
  
 
 
