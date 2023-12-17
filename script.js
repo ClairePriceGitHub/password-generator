@@ -89,63 +89,67 @@ var upperCasedCharacters = [
 ];
 
 
-/*
-// Function to prompt user for password options
-function getPasswordOptions() {
-
-}
-
-
-// Function for getting a random element from an array
-function getRandom(arr) {
-  
-}
-
-
-// Function to generate password with user input
-function generatePassword() {
- 
-}
-
-// Get references to the #generate element
-var generateBtn = document.querySelector('#generate');
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector('#password');
-
-  passwordText.value = password;
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
-
-*/
-
-
-
-
-
 // --------------------------------------------------------------------
 // Function to prompt user for password options
 function getPasswordOptions() {
-  var promptQuestions = [
-    prompt("How many characters does your password have?")];
-  var promptAnswers = [0];
+  // var promptQuestions = [
+  //   prompt("How many characters does your password have?")];
+  // var promptAnswers = [0];
   
-  // For prompt to check input values and replace in promptAnswers array
+  // // For prompt to check input values and replace in promptAnswers array
+  // var numCharInput = 0;
+  // for (var i=0; i < promptQuestions.length; i++) {
+  //   // if (promptQuestions[i] < 8 || promptQuestions[i] > 128) {
+  //   //   alert("Please enter a number between 8 and 128");
+  //   //   getPasswordOptions();
+  //   //   break;
+  //   // } else {
+  //     numCharInput += promptQuestions[i];
+  //     promptAnswers.splice(i, 1, numCharInput);
+  //   //}
+  // }
+
+
+
+
+
+  var promptAnswers = [];
   var numCharInput = 0;
-  for (var i=0; i < promptQuestions.length; i++) {
-    // if (promptQuestions[i] < 8 || promptQuestions[i] > 128) {
-    //   alert("Please enter a number between 8 and 128");
-    //   getPasswordOptions();
-    //   break;
-    // } else {
-      numCharInput += promptQuestions[i];
-      promptAnswers.splice(i, 1, numCharInput);
-    //}
+  var promptTestInput = function() {
+    var promptQuestions = prompt("How many characters does your password have?");
+    if (promptQuestions < 8 || promptQuestions > 128) {
+      alert("Please enter a number between 8 and 128");
+      promptTest();
+    } else {
+      numCharInput += promptQuestions;
+      promptAnswers.push(numCharInput);
+    }
   }
+  promptTestInput();
+
+
+
+  // if (promptQuestions < 8 || promptQuestions > 128) {
+  //   alert("Please enter a number between 8 and 128");
+  //   prompt("How many characters does your password have?");
+  // } 
+  // numCharInput += promptQuestions;
+  // promptAnswers.push(numCharInput);
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   var confirmQuestions = [
     confirm("does your password have special characters?"),
