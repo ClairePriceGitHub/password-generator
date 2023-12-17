@@ -184,6 +184,7 @@ function generatePassword() {
   var arraySelection = [];
   var password = [];
   // Use input to combine which arrays are to be randomly selected from
+  // password.push to ensure at least one character from each array used
   if (promptOutput[0] === true) {
     arraySelection.push(specialCharacters);
     password.push(getRandom(specialCharacters));
@@ -198,10 +199,22 @@ function generatePassword() {
   }
   arraySelection.push(lowerCasedCharacters);
   password.push(getRandom(lowerCasedCharacters));
+
   // Combine selected arrays into one array rather than nested
   var flatArraySelection = arraySelection.flat();
 
-  for (var i=0; i < confirmOutput-4; i++) {
+  var confirmOutputLength = 0;
+  if (arraySelection.length === 4) {
+    confirmOutputLength = confirmOutput - 4;
+  } else if (arraySelection.length === 3) {
+    confirmOutputLength = confirmOutput - 3;
+  } else if (arraySelection.length === 2) {
+    confirmOutputLength = confirmOutput - 2;
+  } else {
+    confirmOutputLength = confirmOutput - 1;
+  }
+
+  for (var i=0; i < confirmOutputLength; i++) {
     password.push(getRandom(flatArraySelection));
   }
 
@@ -209,8 +222,7 @@ function generatePassword() {
 
   
 
-  // console.log(flatArraySelection);
-  // console.log(arrayPassword);
+ 
 
 }
 
