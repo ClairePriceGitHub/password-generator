@@ -177,26 +177,44 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
   var output = getPasswordOptions();
+  // Create array with prompt outputs only
   var promptOutput = output.slice(1);
-  var confirmOutput = output.slice(0, 1);
+  // Save confirmOutputNumber to variable and convert from string to number
+  var confirmOutput = output[0];
+  var confirmOutputNumber = confirmOutput * 1;
+  console.log(confirmOutputNumber);
+  console.log(typeof confirmOutputNumber);
+  
+  
+
   var arraySelection = [];
-  var password = [];
-  arraySelection.push(lowerCasedCharacters);
-  password.push(getRandom(lowerCasedCharacters));
+  var arrayPassword = [];
+  
   if (promptOutput[0] === true) {
     arraySelection.push(specialCharacters);
-    password.push(getRandom(specialCharacters));
+    arrayPassword.push(getRandom(specialCharacters));
   }  
   if (promptOutput[1] === true) {
     arraySelection.push(numericCharacters);
-    password.push(getRandom(numericCharacters));
+    arrayPassword.push(getRandom(numericCharacters));
   }
   if (promptOutput[2] === true) {
     arraySelection.push(upperCasedCharacters);
-    password.push(getRandom(upperCasedCharacters));
+    arrayPassword.push(getRandom(upperCasedCharacters));
   }
-  console.log(arraySelection);
-  console.log(password);
+  arraySelection.push(lowerCasedCharacters);
+  arrayPassword.push(getRandom(lowerCasedCharacters));
+
+  // var flatArraySelection = arraySelection.flat();
+  // var randomExecutes = function(confirmOutput) {
+  //   arrayPassword.push(getRandom(flatArraySelection));
+  // }
+  // randomExecutes();
+
+  
+
+  // console.log(flatArraySelection);
+  // console.log(arrayPassword);
 
  }
 
@@ -219,7 +237,7 @@ var generateBtn = document.querySelector('#generate');
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector('#password');
- // document.getElementById("password").value = password; // associate the password with the input box?
+  // document.getElementById("password").value = password; // associate the password with the input box?
   passwordText.value = password;
 }
 
