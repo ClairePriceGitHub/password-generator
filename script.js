@@ -93,7 +93,7 @@ var upperCasedCharacters = [
 // Function to prompt user for password options
 function getPasswordOptions() {
   var promptAnswers = [];
-  // Function to test inputed prompt values and push to array
+  // Function to test inputed prompt value and push to array
   var promptTestInput = function() {
     var promptQuestions = prompt("How many characters would you like your password to have?\n(Please enter a number between 8 and 128)");
     if (promptQuestions < 8 || promptQuestions > 128) {
