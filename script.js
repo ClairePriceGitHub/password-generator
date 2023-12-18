@@ -107,12 +107,12 @@ function getPasswordOptions() {
     }
   }
   promptTestInput();
-
+  // confirmQuestions in an array
   var confirmQuestions = [
     confirm("Does your password have special characters?"),
     confirm("Does your password have numeric characters?"),
     confirm("Does your password have uppercase characters?")];
-  // confirmAnswers[0] evaluates lowercase characters always true
+  // confirmAnswers[0] evaluates lowercase characters always true, initiate other answers
   var confirmAnswers = [true, false, false, false];
   // For confirm questions to change false to true as per input
   for (var i=0; i < confirmQuestions.length; i++) {
@@ -122,7 +122,6 @@ function getPasswordOptions() {
       }
     }
   }
-
   // Return one array with all input answers
   var inputAnswers = promptAnswers.concat(confirmAnswers);
   return inputAnswers;
@@ -142,7 +141,6 @@ function generatePassword() {
   var output = getPasswordOptions();
   // Create array with confirm outputs only
   var confirmOutput = output.slice(1);
-  console.log(confirmOutput);
   // Convert password length prompt from string to number
   var promptOutput = (output[0]) * 1;
   var arrayOptions = [lowerCasedCharacters, specialCharacters, numericCharacters, upperCasedCharacters];
@@ -157,20 +155,11 @@ function generatePassword() {
   }
   // Combine selected arrays into one array rather than nested, to then do random selection
   var flatArraySelection = arraySelection.flat();
-
-  // Loop to evaluate number of characters left to add to password
+  // Evaluate N (number of characters) left to add to password from prompt
   // (after ensuring at least one from each selected array has been added)
-  var confirmOutputLength = 0;
-  for (var i=0; i < arrayOptions.length; i++) {
-    if (arraySelection.length === arrayOptions[i]) {
-      var index = i;
-      confirmOutputLength = promptOutput - index;
-    }
-  }
-  console.log(confirmOutputLength);
-
+  var promptOutputLength = promptOutput - arraySelection.length;
   // Push random password character N times to password
-  for (var i=0; i < confirmOutputLength; i++) {
+  for (var i=0; i < promptOutputLength; i++) {
     password.push(getRandom(flatArraySelection));
   }
   // Password array to string without commas
