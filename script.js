@@ -95,12 +95,12 @@ function getPasswordOptions() {
   var promptAnswers = [];
   // Function to test inputed prompt values and push to array
   var promptTestInput = function() {
-    var promptQuestions = prompt("How many characters would you like your password to have?");
+    var promptQuestions = prompt("How many characters would you like your password to have?\n(Please enter a number between 8 and 128)");
     if (promptQuestions < 8 || promptQuestions > 128) {
-      alert("Error:   Please enter a number between 8 and 128");
+      alert("Error:  Please enter a number between 8 and 128");
       promptTestInput();
     } else if (isNaN(promptQuestions * 1)) {
-      alert("Error:   Please enter a numeric value (e.g. 12)");
+      alert("Error:  Please enter a numeric value\n(example 12)");
       promptTestInput();
     } else {
       promptAnswers.push(promptQuestions);
@@ -109,20 +109,21 @@ function getPasswordOptions() {
   promptTestInput();
 
   var confirmQuestions = [
-    confirm("does your password have special characters?"),
-    confirm("does your password have numeric characters?"),
-    confirm("does your password have uppercase characters?")];
-  var confirmAnswers = [false, false, false];
+    confirm("Does your password have special characters?"),
+    confirm("Does your password have numeric characters?"),
+    confirm("Does your password have uppercase characters?")];
+  // confirmAnswers[0] evaluates lowercase characters always true
+  var confirmAnswers = [true, false, false, false];
   // For confirm questions to change false to true as per input
   for (var i=0; i < confirmQuestions.length; i++) {
-    for (var j=0; j < confirmAnswers.length; j++) {
+    for (var j=1; j < confirmAnswers.length; j++) {
     if (confirmQuestions[i] == true) {
-      confirmAnswers.splice(i, 1, true);
+      confirmAnswers.splice(i+1, 1, true);
       }
     }
   }
 
-  // Return one array with all answers
+  // Return one array with all input answers
   var inputAnswers = promptAnswers.concat(confirmAnswers);
   return inputAnswers;
 }
@@ -141,45 +142,37 @@ function generatePassword() {
   var output = getPasswordOptions();
   // Create array with confirm outputs only
   var confirmOutput = output.slice(1);
+  console.log(confirmOutput);
   // Convert password length prompt from string to number
   var promptOutput = (output[0]) * 1;
+  var arrayOptions = [lowerCasedCharacters, specialCharacters, numericCharacters, upperCasedCharacters];
   var arraySelection = [];
   var password = [];
-  // Use input to combine which arrays are to be randomly selected from
-  // password.push to ensure at least one character from each array used
-  if (confirmOutput[0] === true) {
-    arraySelection.push(specialCharacters);
-    password.push(getRandom(specialCharacters));
-  }  
-  if (confirmOutput[1] === true) {
-    arraySelection.push(numericCharacters);
-    password.push(getRandom(numericCharacters));
+  // Loop over true/false values and push corresponding character arrays to arraySelection
+  // password.push to ensure at least one character from selected arrays included in password
+  for (var i=0; i < confirmOutput.length; i++)
+  if (confirmOutput[i]) {
+    arraySelection.push(arrayOptions[i]);
+    password.push(getRandom(arrayOptions[i]));
   }
-  if (confirmOutput[2] === true) {
-    arraySelection.push(upperCasedCharacters);
-    password.push(getRandom(upperCasedCharacters));
-  }
-  arraySelection.push(lowerCasedCharacters);
-  password.push(getRandom(lowerCasedCharacters));
-
   // Combine selected arrays into one array rather than nested, to then do random selection
   var flatArraySelection = arraySelection.flat();
 
+  // Loop to evaluate number of characters left to add to password
+  // (after ensuring at least one from each selected array has been added)
   var confirmOutputLength = 0;
-  if (arraySelection.length === 4) {
-    confirmOutputLength = promptOutput - 4;
-  } else if (arraySelection.length === 3) {
-    confirmOutputLength = promptOutput - 3;
-  } else if (arraySelection.length === 2) {
-    confirmOutputLength = promptOutput - 2;
-  } else {
-    confirmOutputLength = promptOutput - 1;
+  for (var i=0; i < arrayOptions.length; i++) {
+    if (arraySelection.length === arrayOptions[i]) {
+      var index = i;
+      confirmOutputLength = promptOutput - index;
+    }
   }
+  console.log(confirmOutputLength);
 
+  // Push random password character N times to password
   for (var i=0; i < confirmOutputLength; i++) {
     password.push(getRandom(flatArraySelection));
   }
-
   // Password array to string without commas
   return password.toString().replace(/,/g,"");
 }
