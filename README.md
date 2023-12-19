@@ -22,8 +22,14 @@ https://clairepricegithub.github.io/password-generator/
 
 ## Credits
 
-index.js lines 167-186: <br>
-Stack Overflow. 2012, July 2. *Return index of greatest value in an array*. https://stackoverflow.com/questions/11301438/return-index-of-greatest-value-in-an-array
+
+script.js lines : <br>
+Wilkins, J. (2022, May 2). *How to Convert a String to a Number in JavaScript*. freeCodeCamp. https://www.freecodecamp.org/news/how-to-convert-a-string-to-a-number-in-javascript/#:~:text=The%20unary%20plus%20operator%20(%20%2B%20)%20will%20convert%20a%20string%20into,will%20go%20before%20the%20operand.&text=We%20can%20also%20use%20the,into%20a%20floating%20point%20number.&text=If%20the%20string%20value%20cannot,the%20result%20will%20be%20NaN%20.
+
+script.js lines : <br>
+Stack Overflow. (2012, Jun 12). *do <something> N times (declarative syntax)*. https://stackoverflow.com/questions/10993824/do-something-n-times-declarative-syntax
+
+
 
 ## License
 
