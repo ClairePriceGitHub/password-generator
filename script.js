@@ -92,6 +92,7 @@ var upperCasedCharacters = [
 // --------------------------------------------------------------------
 // Function to prompt user for password options
 function getPasswordOptions() {
+  // Prompt
   var promptAnswers = [];
   // Function to test inputed prompt value and push to array
   var promptTestInput = function() {
@@ -107,21 +108,33 @@ function getPasswordOptions() {
     }
   }
   promptTestInput();
-  // confirmQuestions in an array
-  var confirmQuestions = [
-    confirm("Does your password have special characters?"),
-    confirm("Does your password have numeric characters?"),
-    confirm("Does your password have uppercase characters?")];
-  // confirmAnswers[0] evaluates lowercase characters always true, initiate other answers
-  var confirmAnswers = [true, false, false, false];
-  // For confirm questions to change false to true as per input
-  for (var i=0; i < confirmQuestions.length; i++) {
-    for (var j=1; j < confirmAnswers.length; j++) {
-    if (confirmQuestions[i] == true) {
-      confirmAnswers.splice(i+1, 1, true);
-      }
+  // Confirm
+  alert("Please use the following windows to select the character type(s) to be included in your password. Character options are:\n\nLowercase Characters\nUppercase Characters\nSpecial Characters\nNumeric Characters");
+  var confirmAnswers = [false, false, false, false];
+  // Function to test inputed confirm values and push to array
+  var confirmTestInput = function() {
+    var confirmQuestions = [
+      confirm("Does your password have lowercase characters?"),
+      confirm("Does your password have uppercase characters?"),
+      confirm("Does your password have special characters?"),
+      confirm("Does your password have numeric characters?")
+    ];
+    // For confirm questions to change false to true as per input
+    for (var i=0; i < confirmQuestions.length; i++) {
+      for (var j=0; j < confirmAnswers.length; j++) {
+        if (confirmQuestions[i] == true) {
+        confirmAnswers.splice(i, 1, true);
+        }
+      }  
+    }
+    // Function to check at least one character type has been selected
+    var checkFalse = confirmAnswers.every(ele => ele === false);
+    if (checkFalse) {
+      alert("Error:  Please make at least one character type selection");
+      confirmTestInput();
     }
   }
+  confirmTestInput();
   // Return one array with all input answers
   var inputAnswers = promptAnswers.concat(confirmAnswers);
   return inputAnswers;
@@ -143,7 +156,7 @@ function generatePassword() {
   var confirmOutput = output.slice(1);
   // Convert password length prompt from string to number
   var promptOutput = (output[0]) * 1;
-  var arrayOptions = [lowerCasedCharacters, specialCharacters, numericCharacters, upperCasedCharacters];
+  var arrayOptions = [lowerCasedCharacters, upperCasedCharacters, specialCharacters, numericCharacters];
   var arraySelection = [];
   var password = [];
   // Loop over true/false values and push corresponding character arrays to arraySelection
